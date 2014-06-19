@@ -1,0 +1,34 @@
+[core]
+	filemode = false
+	editor = vim
+	autocrlf = true
+[push]
+	default = upstream
+[mergetool.diffmerge]
+	cmd = git-merge-diffmerge-wrapper.sh "$PWD/$LOCAL" "$PWD/$BASE" "$PWD/$REMOTE" "$PWD/$MERGED" 
+	trustExitCode = false
+	keepBackup = false
+[diff]
+	tool = kdiff3
+[merge]
+	tool = kdiff3
+	defaultToUpstream = true
+[credential]
+	helper = !\"C:/Program Files (x86)/GitExtensions/GitCredentialWinStore/git-credential-winstore.exe\"
+[user]
+	name = sean.fitzgerald
+	email = sean@emeraldtherapeutics.com
+[difftool "kdiff3"]
+	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	hist = log --graph --pretty=format:'%h %ad | %s%d [%an]' --date=short
+	last = log -1 HEAD
+	unstage = reset HEAD --
+	amend = commit --amend -C HEAD
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	g = grep --break --heading --line-number
