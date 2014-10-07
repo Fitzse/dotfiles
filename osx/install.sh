@@ -11,5 +11,6 @@ git clone git@github.com:tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 git clone git@github.com:rsmenon/vim-mathematica.git ~/.vim/bundle/vim-mathematica
 git clone git@github.com:tpope/vim-surround.git ~/.vim/bundle/vim-surround
 git clone git@github.com:kien/ctrlp.vim.git ~/.vim/bundle/ctrlp
+git clone git@github.com:fatih/vim-go.git ~/.vim/bundle/vim-go.git
 
 cp .vimrc ~/.vimrc
