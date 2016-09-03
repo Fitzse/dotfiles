@@ -1,0 +1,52 @@
+"*":
+  "autocomplete-plus":
+    autoActivationDelay: 200
+    enableAutoConfirmSingleSuggestion: false
+    maxVisibleSuggestions: 5
+  core:
+    disabledPackages: [
+      "linter-coffeelint"
+      "linter"
+      "goto"
+      "mathematica-documentation"
+    ]
+    themes: [
+      "genesis-ui"
+      "atom-dark-fusion-syntax"
+    ]
+  editor:
+    fontFamily: "Hack"
+    invisibles: {}
+    preferredLineLength: 100
+    showIndentGuide: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "669fa35d-bc31-6fff-0d58-eaa0946b4886"
+  "git-diff":
+    showIconsInEditorGutter: true
+  "git-plus": {}
+  "go-plus":
+    formatTool: "goimports"
+    goPath: "/Users/sean/go"
+  "gruvbox-plus-syntax": {}
+  linter: {}
+  "lisp-paredit": {}
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
+".diff.source":
+  editor:
+    preferredLineLength: 100
+".mathematica.source":
+  editor:
+    preferredLineLength: 100
+    tabType: "hard"
+  whitespace:
+    removeTrailingWhitespace: false
