@@ -75,11 +75,23 @@ let g:go_highlight_operators = 1
 " Auto formatting and importing
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
 
 " Status line types/signatures
 let g:go_auto_type_info = 1
 
+" Quickfix lists for Build/Test errors
+let g:go_list_type = "quickfix"
+
 " Go Commands
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+
 autocmd FileType go nmap <Leader>r  <Plug>(go-run)
 autocmd FileType go nmap <Leader>t  <Plug>(go-test)
 
