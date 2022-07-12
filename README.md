@@ -1,9 +1,5 @@
-dotfiles
-========
-
-# Vim Plugins
-* NerdTree
-* vim-colors-solarized
-* vim-fugitive
-* vim-mathematica
-* vim-surround
+# Neovim Setup
+1. Clone repository to ~/repositories/dotfiles
+2. cd ~/repositories/dotfiles
+3. mkdir -p ~/.config/nvim
+4. cp nvim/init.vim ~/.config/nvim 
