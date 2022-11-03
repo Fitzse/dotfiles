@@ -125,6 +125,8 @@ require'lspconfig'.gopls.setup{
   on_attach = on_attach,
 }
 
+require("trouble").setup {}
+
 function OrgImports(wait_ms)
     local params = vim.lsp.util.make_range_params()
     params.context = {only = {"source.organizeImports"}}
