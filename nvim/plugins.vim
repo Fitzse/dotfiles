@@ -9,8 +9,8 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'rakr/vim-one'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -25,7 +25,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
