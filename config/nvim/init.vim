@@ -10,7 +10,7 @@ let g:loaded_perl_provider = 0
 let g:loaded_node_provider = 0
 
 " Load Plugins
-source $HOME/repositories/dotfiles/nvim/plugins.vim
+source $HOME/repositories/dotfiles/config/nvim/plugins.vim
 
 " Map Leader
 let mapleader=" "
@@ -58,21 +58,23 @@ set shiftwidth=4
 " Completion options
 set completeopt=menu,menuone,noselect
 
-" NerdTree
-map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-map <Leader>e :NERDTreeFind<CR>
-let NERDTreeIgnore=['\.class', '\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o']
-let NERDTreeQuitOnOpen=1
+" Telescope
+nnoremap <silent> <leader>f <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
 
-" fzf
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>g :Rg<CR>
+" Tree
+nnoremap <silent> <leader>e :NvimTreeFindFile<cr>
+nnoremap <silent> <leader>et :NvimTreeToggle<cr>
 
-" Airline
-set laststatus=2
-let g:airline_theme='one'
+" Telescope
+nnoremap <silent> <leader>f <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>gb <cmd>Telescope git_branches<cr>
+nnoremap <silent> <leader>gs <cmd>Telescope git_status<cr>
+nnoremap <silent> <leader>s <cmd>Telescope treesitter<cr>
+nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
 
 " Trouble
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
@@ -81,6 +83,8 @@ nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 
 " Go LSP Config
 lua << EOF
+require('lualine').setup()
+
 local cmp = require'cmp'
 cmp.setup({
     snippet = {
@@ -115,14 +119,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
-  if client.server_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>m", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  end
+  buf_set_keymap("n", "<space>m", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 end
 
 require'lspconfig'.gopls.setup{
@@ -131,6 +132,39 @@ require'lspconfig'.gopls.setup{
 }
 
 require("trouble").setup {}
+
+local telescope = require("telescope")
+telescope.setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = require('telescope.actions').close,
+        ["<C-j>"] = require('telescope.actions').move_selection_next,
+        ["<C-k>"] = require('telescope.actions').move_selection_previous,
+      }
+    }
+  },
+})
+telescope.load_extension('fzf')
+
+require("nvim-tree").setup()
+require("Comment").setup()
+
+require("nvim-treesitter.configs").setup({
+  -- A list of parser names, or "all" (the five listed parsers should always be installed)
+  ensure_installed = { "lua", "vim", "vimdoc", "go", "hcl" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+  },
+})
 
 function OrgImports(wait_ms)
     local params = vim.lsp.util.make_range_params()
