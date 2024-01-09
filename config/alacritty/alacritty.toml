@@ -1,0 +1,8 @@
+[font]
+size = 15.0
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+
+[shell]
+program = "/opt/homebrew/bin/fish"
